@@ -77,12 +77,13 @@ a:hover{color:var(--bronze-deep);}
 /* uncomment the url() line below and drop the file in /photos.               */
 .title{
   position:relative;
-  /* Real school-gate photo with a bottom scrim only, so the gate sign stays visible */
+  /* Clean school-gate photo — NO full-frame mask. Only a soft bottom scrim under
+     the text; the sky and the gate stay sharp. Legibility comes from text-shadow. */
   background:
-    linear-gradient(to top, rgba(45,12,18,.92) 0%, rgba(45,12,18,.58) 26%, rgba(45,12,18,.16) 46%, transparent 64%),
-    url("../../photos/school-gate.jpg") center 48%/cover no-repeat,
+    linear-gradient(180deg, transparent 0%, transparent 46%, rgba(38,11,16,.66) 100%),
+    url("../../photos/school-gate.jpg") center 42%/cover no-repeat,
     #561B27;
-  min-height:640px;
+  min-height:620px;
   display:flex;align-items:flex-end;
   text-align:center;color:#fff;
   border-bottom:4px solid var(--bronze);
@@ -92,8 +93,9 @@ a:hover{color:var(--bronze-deep);}
 .title__eyebrow{
   display:inline-block;
   font-size:14px;letter-spacing:.26em;
-  color:rgba(243,217,178,.96);font-weight:700;
+  color:rgba(247,226,196,.98);font-weight:700;
   text-transform:uppercase;margin-bottom:16px;
+  text-shadow:0 1px 12px rgba(0,0,0,.6);
 }
 .title h1{
   font-family:'Playfair Display','PingFang TC',serif;
@@ -113,7 +115,8 @@ a:hover{color:var(--bronze-deep);}
 .title__tagline{
   max-width:680px;margin:0 auto;
   font-family:'Playfair Display',serif;font-style:italic;
-  font-size:23px;color:rgba(255,255,255,.96);line-height:1.55;
+  font-size:23px;color:#fff;line-height:1.55;
+  text-shadow:0 1px 12px rgba(0,0,0,.55);
 }
 .title__tagline .tagline-zh{
   display:block;font-style:normal;
@@ -339,11 +342,12 @@ footer .partner a:hover{border-bottom-color:#f3d9b2;}
 }
 .page-hero > .wrap{width:100%;padding:66px 0 40px;position:relative;z-index:1;}
 /* per-page banner photos — clear campus photo + bottom scrim only */
-.page-hero.ph-principal{background:linear-gradient(to top, rgba(45,12,18,.93) 0%, rgba(45,12,18,.52) 34%, rgba(45,12,18,.12) 62%, transparent 82%), url("../../photos/campus-principal.jpg") center 48%/cover no-repeat, #561B27;}
-.page-hero.ph-course{background:linear-gradient(to top, rgba(45,12,18,.93) 0%, rgba(45,12,18,.52) 34%, rgba(45,12,18,.12) 62%, transparent 82%), url("../../photos/campus-course.jpg") center 52%/cover no-repeat, #561B27;}
-.page-hero.ph-around{background:linear-gradient(to top, rgba(45,12,18,.93) 0%, rgba(45,12,18,.52) 34%, rgba(45,12,18,.12) 62%, transparent 82%), url("../../photos/campus-around.jpg") center 46%/cover no-repeat, #561B27;}
-.page-hero.ph-news{background:linear-gradient(to top, rgba(45,12,18,.93) 0%, rgba(45,12,18,.52) 34%, rgba(45,12,18,.12) 62%, transparent 82%), url("../../photos/campus-news.jpg") center 46%/cover no-repeat, #561B27;}
-.page-hero .eyebrow{display:inline-block;font-size:13.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(243,217,178,.96);font-weight:700;margin-bottom:14px;}
+.page-hero.ph-principal{background:linear-gradient(180deg, transparent 0%, transparent 42%, rgba(38,11,16,.68) 100%), url("../../photos/campus-principal.jpg") center 48%/cover no-repeat, #561B27;}
+.page-hero.ph-course{background:linear-gradient(180deg, transparent 0%, transparent 42%, rgba(38,11,16,.68) 100%), url("../../photos/campus-course.jpg") center 52%/cover no-repeat, #561B27;}
+.page-hero.ph-around{background:linear-gradient(180deg, transparent 0%, transparent 42%, rgba(38,11,16,.68) 100%), url("../../photos/campus-around.jpg") center 46%/cover no-repeat, #561B27;}
+.page-hero.ph-news{background:linear-gradient(180deg, transparent 0%, transparent 42%, rgba(38,11,16,.68) 100%), url("../../photos/campus-news.jpg") center 46%/cover no-repeat, #561B27;}
+.page-hero .eyebrow,.page-hero h1,.page-hero .tagline{text-shadow:0 1px 12px rgba(0,0,0,.55);}
+.page-hero .eyebrow{display:inline-block;font-size:13.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(247,226,196,.98);font-weight:700;margin-bottom:14px;}
 .page-hero h1{font-family:'Playfair Display','PingFang TC',serif;font-size:clamp(36px,5.5vw,52px);font-weight:600;line-height:1.1;color:#fff;margin-bottom:8px;}
 .page-hero h1 .zh{display:block;font-family:'PingFang TC',sans-serif;font-size:clamp(19px,2.2vw,23px);font-weight:500;letter-spacing:.06em;color:rgba(255,255,255,.86);margin-top:10px;}
 .page-hero .tagline{margin-top:18px;max-width:680px;font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:rgba(255,255,255,.93);line-height:1.55;}
