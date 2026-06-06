@@ -77,22 +77,18 @@ a:hover{color:var(--bronze-deep);}
 /* uncomment the url() line below and drop the file in /photos.               */
 .title{
   position:relative;
+  /* Real school-gate photo with a bottom scrim only, so the gate sign stays visible */
   background:
-    /* url("../photos/hero-school.jpg") center 55%/cover no-repeat, */
-    linear-gradient(135deg,#3F1019 0%,#561B27 45%,#7A2A3A 100%);
-  padding:118px 0 104px;
+    linear-gradient(to top, rgba(45,12,18,.92) 0%, rgba(45,12,18,.58) 26%, rgba(45,12,18,.16) 46%, transparent 64%),
+    url("../../photos/school-gate.jpg") center 48%/cover no-repeat,
+    #561B27;
+  min-height:640px;
+  display:flex;align-items:flex-end;
   text-align:center;color:#fff;
   border-bottom:4px solid var(--bronze);
   overflow:hidden;
 }
-.title::after{
-  content:"";position:absolute;inset:0;
-  background:
-    radial-gradient(circle at 80% 18%,rgba(176,125,60,.24),transparent 55%),
-    radial-gradient(circle at 18% 82%,rgba(122,42,58,.34),transparent 55%);
-  pointer-events:none;
-}
-.title > .wrap{position:relative;z-index:1;}
+.title > .wrap{position:relative;z-index:1;width:100%;padding-bottom:54px;}
 .title__eyebrow{
   display:inline-block;
   font-size:14px;letter-spacing:.26em;
@@ -336,9 +332,17 @@ footer .partner a:hover{border-bottom-color:#f3d9b2;}
 
 /* ============ Sub-page shared hero ============ */
 .page-hero{
-  background:linear-gradient(135deg,#3F1019 0%,#561B27 60%,#7A2A3A 100%);
-  padding:66px 0 58px;color:#fff;border-bottom:4px solid var(--bronze);
+  position:relative;min-height:360px;
+  display:flex;align-items:flex-end;
+  background:#561B27;            /* fallback; .ph-* adds the banner photo */
+  color:#fff;border-bottom:4px solid var(--bronze);overflow:hidden;
 }
+.page-hero > .wrap{width:100%;padding:66px 0 40px;position:relative;z-index:1;}
+/* per-page banner photos — clear campus photo + bottom scrim only */
+.page-hero.ph-principal{background:linear-gradient(to top, rgba(45,12,18,.93) 0%, rgba(45,12,18,.52) 34%, rgba(45,12,18,.12) 62%, transparent 82%), url("../../photos/campus-principal.jpg") center 48%/cover no-repeat, #561B27;}
+.page-hero.ph-course{background:linear-gradient(to top, rgba(45,12,18,.93) 0%, rgba(45,12,18,.52) 34%, rgba(45,12,18,.12) 62%, transparent 82%), url("../../photos/campus-course.jpg") center 52%/cover no-repeat, #561B27;}
+.page-hero.ph-around{background:linear-gradient(to top, rgba(45,12,18,.93) 0%, rgba(45,12,18,.52) 34%, rgba(45,12,18,.12) 62%, transparent 82%), url("../../photos/campus-around.jpg") center 46%/cover no-repeat, #561B27;}
+.page-hero.ph-news{background:linear-gradient(to top, rgba(45,12,18,.93) 0%, rgba(45,12,18,.52) 34%, rgba(45,12,18,.12) 62%, transparent 82%), url("../../photos/campus-news.jpg") center 46%/cover no-repeat, #561B27;}
 .page-hero .eyebrow{display:inline-block;font-size:13.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(243,217,178,.96);font-weight:700;margin-bottom:14px;}
 .page-hero h1{font-family:'Playfair Display','PingFang TC',serif;font-size:clamp(36px,5.5vw,52px);font-weight:600;line-height:1.1;color:#fff;margin-bottom:8px;}
 .page-hero h1 .zh{display:block;font-family:'PingFang TC',sans-serif;font-size:clamp(19px,2.2vw,23px);font-weight:500;letter-spacing:.06em;color:rgba(255,255,255,.86);margin-top:10px;}
@@ -512,6 +516,63 @@ footer .partner a:hover{border-bottom-color:#f3d9b2;}
 .news-cta{text-align:center;margin-top:44px;}
 
 
+/* ============ Topbar logo mark ============ */
+.topbar-logo{width:42px;height:42px;border-radius:9px;flex-shrink:0;display:block;box-shadow:var(--shadow-sm);}
+
+/* ============ Life-card real photos ============ */
+.life-card__img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
+.life-card:hover .life-card__img img{transform:scale(1.04);}
+
+/* ============ Photo band (校園剪影) ============ */
+.photo-band{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1080px;margin:0 auto;}
+.pband{position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm);aspect-ratio:4/3;margin:0;}
+.pband img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
+.pband:hover img{transform:scale(1.05);}
+.pband .cap{
+  position:absolute;left:0;right:0;bottom:0;
+  background:linear-gradient(transparent,rgba(45,12,18,.86));
+  color:#fff;font-family:'Playfair Display',serif;font-size:18px;font-weight:600;
+  padding:34px 16px 13px;
+}
+.pband .cap .zh{display:block;font-family:'PingFang TC',sans-serif;font-weight:500;font-size:13.5px;opacity:.92;margin-top:1px;}
+
+/* ============ Course cards (Lessons overview) ============ */
+.course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.lcard{
+  display:block;background:#fff;border:1px solid var(--line);
+  border-radius:18px;padding:26px 24px 22px;box-shadow:var(--shadow-sm);
+  transition:transform .2s,box-shadow .2s,border-color .2s;color:var(--ink);
+}
+.lcard:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--garnet);color:var(--ink);}
+.lcard.soon{opacity:.72;cursor:default;}
+.lcard.soon:hover{transform:none;box-shadow:var(--shadow-sm);border-color:var(--line);}
+.lcard .lc-emoji{font-size:40px;line-height:1;}
+.lcard .lc-num{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze-deep);font-weight:700;margin-top:10px;}
+.lcard h3{font-family:'Playfair Display','PingFang TC',serif;font-size:22px;color:var(--garnet-deep);margin-top:3px;line-height:1.2;font-weight:600;}
+.lcard h3 .zh{display:block;font-family:'PingFang TC',sans-serif;font-size:15px;color:var(--ink-soft);font-weight:500;margin-top:3px;}
+.lcard p{font-size:15px;color:var(--ink-soft);margin-top:10px;line-height:1.6;}
+.lcard .go{margin-top:12px;font-weight:700;color:var(--garnet);font-size:14px;}
+.lcard .go.muted{color:var(--ink-soft);font-weight:600;}
+
+/* ============ Playlist embeds ============ */
+.playlist-section{padding:80px 0;}
+.playlist-section.alt{background:linear-gradient(180deg,#fff 0%,var(--garnet-soft) 100%);}
+.playlist-wrap{max-width:940px;margin:0 auto;}
+.playlist-head{margin-bottom:30px;}
+.playlist-head .eyebrow{display:inline-block;color:var(--bronze-deep);font-size:13.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px;}
+.playlist-head h2{font-family:'Playfair Display','PingFang TC',serif;font-size:33px;font-weight:600;color:var(--garnet-deep);line-height:1.2;margin-bottom:6px;}
+.playlist-head h2 .zh{display:block;font-family:'PingFang TC',sans-serif;font-size:19px;color:var(--ink-soft);font-weight:500;margin-top:6px;letter-spacing:.04em;}
+.playlist-head .intro{font-size:17px;color:var(--ink);line-height:1.75;margin-top:18px;}
+.playlist-head .intro-zh{font-family:'PingFang TC',sans-serif;font-size:16.5px;color:var(--ink-soft);line-height:1.85;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);}
+.playlist-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);background:#000;margin-top:24px;}
+.playlist-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.playlist-meta{display:flex;flex-wrap:wrap;gap:18px;margin-top:18px;font-size:14.5px;color:var(--ink-soft);}
+.playlist-meta .tag{background:var(--bronze-soft);color:var(--bronze-deep);padding:4px 12px;border-radius:99px;font-size:13px;font-weight:600;letter-spacing:.04em;}
+
+/* News card summary paragraph (News page, English digest) */
+.news-card .summary{font-size:16px;color:var(--ink);line-height:1.65;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);}
+
+
 /* ============ Mobile ============ */
 @media (min-width: 881px){
   body{font-size:22px;}
@@ -523,7 +584,11 @@ footer .partner a:hover{border-bottom-color:#f3d9b2;}
   .pillars{grid-template-columns:repeat(2,1fr);}
 }
 @media (max-width: 880px){
-  .title{padding:66px 0 56px;}
+  .title{min-height:460px;}
+  .title > .wrap{padding-bottom:38px;}
+  .page-hero{min-height:280px;}
+  .course-grid{grid-template-columns:1fr;}
+  .photo-band{grid-template-columns:1fr;}
   section{padding:64px 0;}
   .about-grid{grid-template-columns:1fr;gap:36px;}
   .pillars{grid-template-columns:1fr;}
