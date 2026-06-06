@@ -76,4 +76,67 @@
     var explain = item.querySelector(".quiz-explain");
     if (explain) explain.classList.add("show");
   });
+
+  /* ---------- 3. Scroll reveal ---------- */
+  // Sections and cards fade + slide up as they enter the viewport.
+  // Bails out (content stays visible) if the browser lacks IntersectionObserver
+  // or the user prefers reduced motion.
+  (function () {
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var SELECTORS = [
+      ".section-head", ".about-text", ".lineage", ".pillar", ".identity__note",
+      ".principal-card", ".principal-portrait", ".life-card", ".pband", ".lcard",
+      ".news-card", ".station", ".commit", ".quiz-item", ".playlist-wrap",
+      ".prose-inner", ".news-meta"
+    ];
+
+    function init() {
+      var root = document.documentElement;
+      root.classList.add("reveal-on");
+
+      var els = [];
+      document.querySelectorAll(SELECTORS.join(",")).forEach(function (el) {
+        if (el.closest(".title")) return;        // never hide the hero
+        if (el.classList.contains("reveal")) return;
+        el.classList.add("reveal");
+        els.push(el);
+      });
+
+      // Stagger items that share a parent (grid rows, card groups).
+      els.forEach(function (el) {
+        var sibs = Array.prototype.filter.call(el.parentNode.children, function (c) {
+          return c.classList && c.classList.contains("reveal");
+        });
+        var idx = sibs.indexOf(el);
+        if (idx > 0) el.style.transitionDelay = (Math.min(idx, 5) * 0.07).toFixed(2) + "s";
+      });
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+      els.forEach(function (el) { io.observe(el); });
+
+      // Safety net: content must never be stuck invisible. If, in some
+      // environment, the observer never fires, reveal everything after a
+      // few seconds. In normal browsers the observer reveals on scroll long
+      // before this, so it never visibly triggers.
+      setTimeout(function () {
+        els.forEach(function (el) { el.classList.add("in"); });
+      }, 3000);
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  })();
 })();
